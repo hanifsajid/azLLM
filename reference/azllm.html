@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>azLLM Package &mdash; azllm 0.1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=92734c54"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="API Reference" href="api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            azllm
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coreconcepts/coreconcepts.html">Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_usage/advancedusage.html">Advanced Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">azLLM Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#azllm-class">azLLM Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#azllm.core.azLLM"><code class="docutils literal notranslate"><span class="pre">azLLM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-azllm.configmanager">azLLMConfigs Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#azllm.configmanager.azLLMConfigs"><code class="docutils literal notranslate"><span class="pre">azLLMConfigs</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">azllm</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api.html">API Reference</a></li>
+      <li class="breadcrumb-item active">azLLM Package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reference/azllm.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="azllm-package">
+<h1>azLLM Package<a class="headerlink" href="#azllm-package" title="Link to this heading"></a></h1>
+<section id="azllm-class">
+<h2>azLLM Class<a class="headerlink" href="#azllm-class" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="azllm.core.azLLM">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">azllm.core.</span></span><span class="sig-name descname"><span class="pre">azLLM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'config.yaml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#azllm.core.azLLM" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Main interface to interact with multiple LLM clients via unified configuration and execution methods.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="azllm.core.azLLM.config_file">
+<span class="sig-name descname"><span class="pre">config_file</span></span><a class="headerlink" href="#azllm.core.azLLM.config_file" title="Link to this definition"></a></dt>
+<dd><p>Path to the configuration file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="azllm.core.azLLM.custom">
+<span class="sig-name descname"><span class="pre">custom</span></span><a class="headerlink" href="#azllm.core.azLLM.custom" title="Link to this definition"></a></dt>
+<dd><p>Whether to use custom configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="azllm.core.azLLM.config">
+<span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#azllm.core.azLLM.config" title="Link to this definition"></a></dt>
+<dd><p>Loaded configuration from file if custom is True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="azllm.core.azLLM.clients">
+<span class="sig-name descname"><span class="pre">clients</span></span><a class="headerlink" href="#azllm.core.azLLM.clients" title="Link to this definition"></a></dt>
+<dd><p>Mapping of client names to their respective classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="azllm.core.azLLM.get_model_config">
+<span class="sig-name descname"><span class="pre">get_model_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#azllm.core.azLLM.get_model_config" title="Link to this definition"></a></dt>
+<dd><p>Retrieves the configuration of a specific model from custom configurations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client_name</strong> (<em>str</em>) – Name of the client.</p></li>
+<li><p><strong>model_name</strong> (<em>str</em>) – Name of the model.</p></li>
+<li><p><strong>version</strong> (<em>str</em>) – Model version.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Configuration of the model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If client or model config is not found.</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">azllm</span> <span class="o">=</span> <span class="n">azLLM</span><span class="p">(</span><span class="n">custom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model_config</span> <span class="o">=</span> <span class="n">azllm</span><span class="o">.</span><span class="n">get_model_config</span><span class="p">(</span><span class="s1">&#39;openai&#39;</span><span class="p">,</span> <span class="s1">&#39;gpt-3&#39;</span><span class="p">,</span> <span class="s1">&#39;v1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">model_config</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="azllm.core.azLLM.generate_text">
+<span class="sig-name descname"><span class="pre">generate_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_model_version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#azllm.core.azLLM.generate_text" title="Link to this definition"></a></dt>
+<dd><p>Generates text using a specific client and model for a given prompt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client_model_version</strong> (<em>str</em>) – Format ‘client:model::version’.</p></li>
+<li><p><strong>prompt</strong> (<em>str</em>) – Text prompt.</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – Additional generation parameters.</p></li>
+<li><p><strong>parse</strong> (<em>bool</em>) – Whether to parse the output.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Generated text.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">azllm</span> <span class="o">=</span> <span class="n">azLLM</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">azllm</span><span class="o">.</span><span class="n">generate_text</span><span class="p">(</span><span class="s2">&quot;openai:gpt-4o-mini::v1&quot;</span><span class="p">,</span> <span class="s2">&quot;Hello, how are you?&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="azllm.core.azLLM.batch_generate">
+<span class="sig-name descname"><span class="pre">batch_generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_model_version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#azllm.core.azLLM.batch_generate" title="Link to this definition"></a></dt>
+<dd><p>Generates text for multiple prompts using the specified client and model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client_model_version</strong> (<em>str</em>) – Format ‘client:model::version’.</p></li>
+<li><p><strong>prompts</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – List of prompts.</p></li>
+<li><p><strong>kwargs</strong> (<em>List</em><em>[</em><em>dict</em><em>]</em><em>, </em><em>optional</em>) – Parameters per prompt.</p></li>
+<li><p><strong>parse</strong> (<em>List</em><em>[</em><em>bool</em><em>]</em><em>, </em><em>optional</em>) – Parse flag per prompt.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of generated texts.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[str]</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">azllm</span> <span class="o">=</span> <span class="n">azLLM</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">azllm</span><span class="o">.</span><span class="n">batch_generate</span><span class="p">(</span><span class="s2">&quot;openai:gpt-4o-mini::v1&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;How are you?&quot;</span><span class="p">,</span> <span class="s2">&quot;What&#39;s the weather?&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="azllm.core.azLLM.generate_parallel">
+<span class="sig-name descname"><span class="pre">generate_parallel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clients_models_versions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#azllm.core.azLLM.generate_parallel" title="Link to this definition"></a></dt>
+<dd><p>Generate text in parallel using different clients and models for the same prompt.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prompt</strong> (<em>str</em>) – Input prompt.</p></li>
+<li><p><strong>clients_models_versions</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – List of ‘client:model::version’ strings.</p></li>
+<li><p><strong>kwargs</strong> (<em>List</em><em>[</em><em>dict</em><em>]</em><em>, </em><em>optional</em>) – Additional parameters per client.</p></li>
+<li><p><strong>parse</strong> (<em>List</em><em>[</em><em>bool</em><em>]</em><em>, </em><em>optional</em>) – Parse flag per client.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping of ‘client:model::version:index’ to generated text or error message.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">azllm</span> <span class="o">=</span> <span class="n">azLLM</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">azllm</span><span class="o">.</span><span class="n">generate_parallel</span><span class="p">(</span><span class="s2">&quot;Hello!&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;openai:gpt-4o-mini::v1&quot;</span><span class="p">,</span> <span class="s2">&quot;grok:default::default&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-azllm.configmanager">
+<span id="azllmconfigs-class"></span><h2>azLLMConfigs Class<a class="headerlink" href="#module-azllm.configmanager" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="azllm.configmanager.azLLMConfigs">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">azllm.configmanager.</span></span><span class="sig-name descname"><span class="pre">azLLMConfigs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'config.yaml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#azllm.configmanager.azLLMConfigs" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A configuration manager for handling custom and default configurations
+of supported LLM clients.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="azllm.configmanager.azLLMConfigs.config_file">
+<span class="sig-name descname"><span class="pre">config_file</span></span><a class="headerlink" href="#azllm.configmanager.azLLMConfigs.config_file" title="Link to this definition"></a></dt>
+<dd><p>Name of the configuration file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="azllm.configmanager.azLLMConfigs.custom">
+<span class="sig-name descname"><span class="pre">custom</span></span><a class="headerlink" href="#azllm.configmanager.azLLMConfigs.custom" title="Link to this definition"></a></dt>
+<dd><p>Flag to determine if custom configurations are used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="azllm.configmanager.azLLMConfigs.custom_configs">
+<span class="sig-name descname"><span class="pre">custom_configs</span></span><a class="headerlink" href="#azllm.configmanager.azLLMConfigs.custom_configs" title="Link to this definition"></a></dt>
+<dd><p>Dictionary holding custom configuration data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl>
+<dt>Usage:</dt><dd><dl>
+<dt>To use default configurations:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cfg</span> <span class="o">=</span> <span class="n">azLLMConfigs</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cfg</span><span class="o">.</span><span class="n">get_default_configs</span><span class="p">(</span><span class="s1">&#39;openai&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt>Retrieve default config for all supported clients</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cfg</span><span class="o">.</span><span class="n">get_default_configs</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd>
+</dl>
+<section id="working-with-custom-configurations">
+<h3>Working with Custom Configurations:<a class="headerlink" href="#working-with-custom-configurations" title="Link to this heading"></a></h3>
+<p>When <cite>custom=True</cite>, the class will:</p>
+<ul class="simple">
+<li><p>Create a local configuration file if it doesn’t exist at: <cite>custom_configs/config.yaml</cite></p></li>
+<li><p>Load existing configurations from that file.</p></li>
+<li><p>Allow updating or adding new model configurations per client.</p></li>
+</ul>
+<p>Example of internal structure of a custom config (custom_configs/config.yaml):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deepseek</span><span class="p">:</span>
+    <span class="n">models</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">model</span><span class="p">:</span> <span class="n">deepseek</span><span class="o">-</span><span class="n">chat</span>
+        <span class="n">version</span><span class="p">:</span> <span class="n">v2</span>
+        <span class="n">parameters</span><span class="p">:</span>
+            <span class="n">frequency_penalty</span><span class="p">:</span> <span class="mi">0</span>
+            <span class="n">max_tokens</span><span class="p">:</span> <span class="mi">1024</span>
+            <span class="n">presence_penalty</span><span class="p">:</span> <span class="mi">0</span>
+            <span class="n">system_message</span><span class="p">:</span> <span class="n">You</span> <span class="n">are</span> <span class="n">an</span> <span class="n">advanced</span> <span class="n">AI</span> <span class="n">assistant</span><span class="o">.</span>
+            <span class="n">temperature</span><span class="p">:</span> <span class="mf">0.7</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">raises ValueError<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If a client is unsupported or input format is incorrect.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="azllm.configmanager.azLLMConfigs.get_default_configs">
+<span class="sig-name descname"><span class="pre">get_default_configs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#azllm.configmanager.azLLMConfigs.get_default_configs" title="Link to this definition"></a></dt>
+<dd><p>Retrieves the default configuration(s) for one or all LLM clients.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>client</strong> (<em>str</em>) – Client name (e.g., ‘openai’) or ‘all’ for all clients.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of default configurations.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the specified client is unsupported.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="azllm.configmanager.azLLMConfigs.update_custom_configs">
+<span class="sig-name descname"><span class="pre">update_custom_configs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models_to_update_or_add</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#azllm.configmanager.azLLMConfigs.update_custom_configs" title="Link to this definition"></a></dt>
+<dd><p>Updates or adds custom configurations for models under a specific client.</p>
+<p>If the client or model doesn’t exist in the configuration, it is added.
+If the model exists, its configuration is updated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client_type</strong> (<em>str</em>) – The LLM client identifier (e.g., ‘openai’).</p></li>
+<li><p><strong>models_to_update_or_add</strong> (<em>dict</em>) – A dictionary where keys are model names and
+values are dictionaries with ‘version’ and ‘parameters’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the client type is not supported.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Hanif Sajid, Bejamin Radford, Yaoyao Dai, Jason Windett.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

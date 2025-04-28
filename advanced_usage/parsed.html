@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structured Outputs (Parsed) &mdash; azllm 0.1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=92734c54"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dynamic Parameters: kwargs" href="kwargs.html" />
+    <link rel="prev" title="Advanced Usage" href="advancedusage.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            azllm
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coreconcepts/coreconcepts.html">Core Concepts</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="advancedusage.html">Advanced Usage</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Structured Outputs (Parsed)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parsed-responses-with-generate-text-method">Parsed Responses with <code class="docutils literal notranslate"><span class="pre">generate_text</span></code> Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parsed-responses-with-batch-generate-method">Parsed Responses with <code class="docutils literal notranslate"><span class="pre">batch_generate</span></code> Method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parsed-responses-with-parallel-generation-method">Parsed Responses with <code class="docutils literal notranslate"><span class="pre">parallel_generation</span></code> Method</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kwargs.html">Dynamic Parameters: <code class="docutils literal notranslate"><span class="pre">kwargs</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/api.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">azllm</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="advancedusage.html">Advanced Usage</a></li>
+      <li class="breadcrumb-item active">Structured Outputs (Parsed)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/advanced_usage/parsed.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="structured-outputs-parsed">
+<h1>Structured Outputs (Parsed)<a class="headerlink" href="#structured-outputs-parsed" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Currently, only the following models/providers support structured outputs:OpenAI, Grok, Gemini, Fireworks, and Ollama.</p></li>
+<li><p>The following models do not support structructed outputs using <code class="docutils literal notranslate"><span class="pre">response_format</span></code>: DeepSeek and Anthropic.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">parse=True</span></code> to enable structured output for further processing.</p></li>
+<li><p>You will also need to provide a Pydantic class in kwargs using <code class="docutils literal notranslate"><span class="pre">response_format</span></code> to get parsed outputs.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">azllm</span><span class="w"> </span><span class="kn">import</span> <span class="n">azLLM</span>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">azLLM</span><span class="p">()</span>  <span class="c1"># Instantiated with default parameters </span>
+</pre></div>
+</div>
+<section id="parsed-responses-with-generate-text-method">
+<h2>Parsed Responses with <code class="docutils literal notranslate"><span class="pre">generate_text</span></code> Method<a class="headerlink" href="#parsed-responses-with-generate-text-method" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">generate_text</span></code>method optionally parse the response from a single prompt using a specified model.</p>
+<ul class="simple">
+<li><p>Accepts a kwargs dictionary for <code class="docutils literal notranslate"><span class="pre">response_format</span></code> and any other additonal additional options (e.g., max_tokens, temperature)</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Capital</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">capital</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Capital name only&quot;</span><span class="p">)</span>
+
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;What is the captial of France?&#39;</span>
+<span class="n">generated_text</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">generate_text</span><span class="p">(</span><span class="s1">&#39;openai&#39;</span><span class="p">,</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;response_format&#39;</span><span class="p">:</span> <span class="n">Capital</span><span class="p">},</span> <span class="n">parse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">str_output</span> <span class="o">=</span> <span class="n">generated_text</span><span class="o">.</span><span class="n">parsed</span><span class="o">.</span><span class="n">capital</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">str_output</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parsed-responses-with-batch-generate-method">
+<h2>Parsed Responses with <code class="docutils literal notranslate"><span class="pre">batch_generate</span></code> Method<a class="headerlink" href="#parsed-responses-with-batch-generate-method" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">batch_generate</span></code> method optionally parse outputs from a model for multiple prompts in one call.</p>
+<ul class="simple">
+<li><p>For each prompt, you can pass a corresponding dictionary of keyword arguments (kwargs).</p></li>
+<li><p>Each kwargs dictionary may include:</p>
+<ul>
+<li><p>A response_format: a Pydantic model class used to parse the structured output.</p></li>
+<li><p>Other model parameters like max_tokens, temperature, etc.</p></li>
+</ul>
+</li>
+<li><p>The kwargs argument itself is a list — each dictionary in the list aligns with a prompt in batch_prompts.</p></li>
+<li><p>Use the parse argument (a list of booleans) to specify whether the output for each prompt should be parsed or not.</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Capital</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">capital</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Capital name only&quot;</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Joke</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">joke</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A simple one or two sentences joke&quot;</span> <span class="p">)</span>
+
+<span class="n">batch_prompts</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;What is the capital of France?&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;Tell me a joke.&#39;</span><span class="p">,</span> 
+     <span class="s1">&#39;What is the capital of USA?&#39;</span>
+     <span class="p">]</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">batch_generate</span><span class="p">(</span><span class="s1">&#39;ollama&#39;</span><span class="p">,</span> <span class="n">batch_prompts</span><span class="p">,</span>
+                                 <span class="n">kwargs</span><span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;response_format&#39;</span><span class="p">:</span> <span class="n">Capital</span><span class="p">},</span>
+                                 <span class="p">{</span><span class="s1">&#39;response_format&#39;</span><span class="p">:</span> <span class="n">Joke</span><span class="p">,</span> <span class="s1">&#39;max_tokens&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;max_tokens&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">}],</span> <span class="n">parse</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">parsed</span><span class="o">.</span><span class="n">capital</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">parsed</span><span class="o">.</span><span class="n">joke</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="o">*</span><span class="mi">40</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="parsed-responses-with-parallel-generation-method">
+<h2>Parsed Responses with <code class="docutils literal notranslate"><span class="pre">parallel_generation</span></code> Method<a class="headerlink" href="#parsed-responses-with-parallel-generation-method" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">generate_parallel</span></code> method allows generating responses from multiple models in parallel, with optional structured parsing for each model.</p>
+<p>You can choose whether or not to parse the output for each model individually.
+This is useful for comparing how models behave with and without structured parsing for the same prompt.</p>
+<ul class="simple">
+<li><p>kwargs: A list of dictionaries aligned with each model. Each can include:</p>
+<ul>
+<li><p>response_format: A Pydantic model for parsing.</p></li>
+<li><p>Other generation parameters like max_tokens, temperature, etc.</p></li>
+</ul>
+</li>
+<li><p>parse: A list of booleans indicating whether to parse the response for each model.</p></li>
+<li><p>The result is a dictionary where each key is a model name with an index (e.g., “grok:1”), and each value is the corresponding response — parsed or raw depending on the parse flag.</p></li>
+<li><p>The index after the last colon (e.g., :1) indicates the model’s position in the clients_models list.</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="c1"># Define the expected structure for parsed output</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MathReasoning</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Step</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+        <span class="n">explanation</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="n">output</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="n">steps</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Step</span><span class="p">]</span>
+    <span class="n">final_answer</span><span class="p">:</span> <span class="nb">str</span>
+
+
+<span class="c1"># Prompt to be sent to all model clients</span>
+<span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;How can I solve 8x + 7 = -23?&quot;</span>
+
+<span class="c1"># List of models to query in parallel</span>
+<span class="n">clients_models</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;openai&#39;</span><span class="p">,</span> <span class="s1">&#39;grok&#39;</span><span class="p">,</span> <span class="s1">&#39;grok&#39;</span><span class="p">]</span>
+
+<span class="c1"># Per-model keyword arguments</span>
+<span class="n">kwargs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{},</span>  <span class="c1"># No parsing for openai</span>
+    <span class="p">{</span><span class="s1">&#39;response_format&#39;</span><span class="p">:</span> <span class="n">MathReasoning</span><span class="p">},</span>  <span class="c1"># Enable parsing for grok</span>
+    <span class="p">{}</span>  <span class="c1"># No parsing for second grok</span>
+<span class="p">]</span>
+
+<span class="c1"># Whether or not to parse the response from each model</span>
+<span class="n">parse_flags</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span>
+
+<span class="c1"># Generate responses in parallel</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">manager</span><span class="o">.</span><span class="n">generate_parallel</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="n">question</span><span class="p">,</span>
+    <span class="n">clients_models_versions</span><span class="o">=</span><span class="n">clients_models</span><span class="p">,</span>
+    <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="n">parse</span><span class="o">=</span><span class="n">parse_flags</span>
+<span class="p">)</span>
+
+<span class="c1"># Display the results</span>
+<span class="k">for</span> <span class="n">client_model</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Client: </span><span class="si">{</span><span class="n">client_model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s1">&#39;parsed&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># If parsed, print the structured final answer</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parsed Final Answer: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">parsed</span><span class="o">.</span><span class="n">final_answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Otherwise, print the raw response</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Raw Result: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="advancedusage.html" class="btn btn-neutral float-left" title="Advanced Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="kwargs.html" class="btn btn-neutral float-right" title="Dynamic Parameters: kwargs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Hanif Sajid, Bejamin Radford, Yaoyao Dai, Jason Windett.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
